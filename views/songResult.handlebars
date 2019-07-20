@@ -1,0 +1,98 @@
+<div id="resultsPage">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-title" href="/">just duet</a>
+            <div class="d-flex align-items-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="float-right">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ml-4">
+                        <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" id="creatorsBtn" href="/creators">Creators</a>
+                        <a class="nav-item nav-link" id="mapsBtn" href="/maps">Local Karaoke</a>
+
+                        {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
+                        <a class="nav-item nav-link disabled" href="/profile">Profile</a>
+                        <button type="button" class="help btn btn-primary" data-toggle="modal"
+                            data-target="#loginModalScrollable" id="loginButton">Log In</button>
+                        <button class="btn btn-primary d-none" id="logout">Log Out</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-10 resultHeader" >
+                <h1 id="resultSong"> {{song}} </h1>
+                <h2 id="resultArtist"> {{artist}} </h2>
+            </div>
+            <div class="col-2">
+                <p class="heartBtn" id="resultHeart" value='{{song}} - {{artist}}'><i class="far fa-heart"></i></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="spotify">
+                <h3 id="dataHeader">song info</h3>
+                {{#if year}}
+                <h4>Year:</h4>
+                <p>{{year}}</p>
+                {{/if}}
+                {{#if album}}
+                <h4>Album: </h4>
+                <p>{{album}}</p>
+                {{/if}}
+                {{#if genre}}
+                <h4>Genre: </h4>
+                <p>{{genre}}</p>
+                {{/if}}
+                {{#if duet}}
+                <h4>Duet: </h4>
+                <p>{{duet}}</p>
+                {{/if}}
+                {{#if duration}}
+                <h4>Length: </h4>
+                <p>{{duration}}</p>
+                {{/if}}
+                {{#if popularity}}
+                <h4>Popularity: </h4>
+                <p>{{popularity}}</p>
+                {{/if}}
+                {{#if explicit}}
+                <h4>Explicit: </h4>
+                <p>{{explicit}}</p>
+                {{/if}}
+                {{#if languages}}
+                <h4>Languages: </h4>
+                <p>{{languages}}</p>
+                {{/if}}
+                </div>
+            </div>
+
+            <div class="col-md-4" id="lyrics">
+                <h3 id="lyricsHeader">lyrics</h3>
+            </div>
+            <div class="col-md-4">
+                <div id="youtube">
+                    <h3 id="lyricsLink">video</h3>
+                    {{#if youtubeURL}}
+                    <iframe src="{{youtubeURL}}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    {{else}}
+                    <h4>Youtube Video <i class=" youtubeLink fas fa-long-arrow-alt-right"></i> <a class="youtubeLink"><i class="fab fa-youtube"></i></a></h4>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/results.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

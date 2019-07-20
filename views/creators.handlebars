@@ -1,0 +1,81 @@
+<div id="creatorsPage" class="">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-title" href="/">just duet</a>
+            <div class="d-flex align-items-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="float-right">
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-4">
+                            <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link active" id="creatorsBtn" href="/creators">Creators</a>
+                            <a class="nav-item nav-link" id="mapsBtn" href="/maps">Local Karaoke</a>
+
+                            {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
+                            <a class="nav-item nav-link disabled" href="/profile">Profile</a>
+                            <button type="button" class="help btn btn-primary" data-toggle="modal"
+                                data-target="#loginModalScrollable" id="loginButton">Log In</button>
+                            <button class="btn btn-primary d-none" id="logout">Log Out</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row header">
+            <div class="col-md-12 mt-4">
+                <h1 class="headerTitle">Karaoke Enthusiasts</h1>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-md-5 profile float-left my-2">
+                <div class="card portfolioCard">
+                    <div class="card-title portfolioTitle row">
+                        <h1 class="creatorTitle col-10">Robert Weston</h1>
+                        <div class="float-right col-2">
+                            <a href="http://rdweston1995.github.io/portfolio/" class="gitIcon" target="_blank"><i
+                                    class="fab fa-github"></i></a>
+                            <a class="externalIcon" href="https://github.com/rdweston1995" target="_blank">
+                                <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <img class="card-img mb-3" src="/images/rweston.jpg" alt="Picture of Robert Weston">
+                    <p>
+                        My name is Robert Weston, I am a Seattle based Web Developer. I'm in the last few weeks of the
+                        University of Washington's Full stack coding bootcamp.
+                        Outside of school I've been working my way through AWS certification and learning multiple
+                        javascript libraries starting with React and Angular. I'm looking to
+                        get a job to further expand my skill set and obtain real world experience innovating the world
+                        of web development.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-5 profile float-right my-2">
+                <div class="card portfolioCard">
+                    <div class="card-title portfolioTitle row">
+                        <h1 class="creatorTitle col-10">Page McEneaney</h1>
+                        <div class="float-right col-2">
+                            <a href="https://github.com/PTMcEneaney" class="gitIcon" target="_blank"><i class="fab fa-github"></i></a>
+                            <a class="externalIcon" href="https://ptmceneaney.github.io/updated-portfolio/"
+                                target="_blank">
+                                <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <img class="card-img mb-3" src="/images/pmceneaney.jpg" alt="Picture of Page McEneaney">
+                    <p>
+                        Page is a web developer with an eye for design and impeccable attention to detail. She is
+                        proficent with NodeJS, Javascript, HTML/CSS, Bootstrap and MySQL. On this project she worked
+                        on both client and server side code to query API's and store music and song information in
+                        the Heroku hosted Jaws DB. Page currently lives in Seattle Washington with her Husband Greg.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

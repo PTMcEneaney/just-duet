@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-title" href="/">Karaoke</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="float-right">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">Creators</a>
+                    <a class="nav-item nav-link" id="mapsBtn" href="/maps">Local Karaoke</a>
+
+                    {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
+                    <a class="nav-item nav-link disabled" href="/profile">Profile</a>
+                    <button type="button" class="help btn btn-primary" data-toggle="modal"
+                        data-target="#loginModalScrollable" id="loginButton">Log In</button>
+                    <button class="btn btn-primary d-none" id="logout">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <form class="login">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="login-email-input" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="login-password-input" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-secondary">Login</button>
+    </form>
+    <br />
+    <p>Or sign up <a href="#" data-dismiss="modal" id="modalSignup" data-toggle="modal"
+            data-target="#signupModalScrollable">here</a></p>
+    <a href="/auth/google">Sign In with Google</a>
+</div>
