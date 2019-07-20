@@ -42,14 +42,14 @@ var parseTracks = function(type, query, data) {
       password: users[j][1]
     })
   };
-  // var userData = [[1, 76, 2], [1, 94, 4], [1, 27, 3], [1, 5, 5], [2, 30, 3], [2, 45, 5], [1, 200, 1]];
-  // for (var j = 0; j < userData.length; j++) {
-  //   db.SwingTable.create({
-  //     userID: userData[j][0],
-  //     songID: userData[j][1],
-  //     rating: userData[j][2]
-  //   });
-  // };
+  var userData = [[1, 76, 2], [1, 94, 4], [1, 27, 3], [1, 5, 5], [2, 30, 3], [2, 45, 5], [1, 200, 1]];
+  for (var j = 0; j < userData.length; j++) {
+    db.SwingTable.create({
+      userID: userData[j][0],
+      songID: userData[j][1],
+      rating: userData[j][2]
+    });
+  };
 };
 
 var matchTracks = function(tracks) {
