@@ -139,7 +139,7 @@ $("body").on("click", ".song", function() {
   console.log(songArtist);
 
   //window.location.href = "https://rocky-reef-42287.herokuapp.com/results/" + songArtist;
-  window.location.href = "http://localhost:3000/results/" + songArtist;
+  window.location.href = "https://damp-reaches-93608.herokuapp.com/results/" + songArtist;
   //API.results(songArtist);
 });
 
