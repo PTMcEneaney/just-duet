@@ -34,6 +34,22 @@ var parseTracks = function(type, query, data) {
   for (var j = 0; j < trackObject.length; j++) {
     matchTracks(trackObject[j]);
   }
+
+  var users = [["test@test.com", "test123"], ["test2@test.com", "test222"]];
+  for (var j = 0; j < userData.length; j++) {
+    db.User.create({
+      email: users[j][0],
+      password: users[j][1]
+    })
+  };
+  // var userData = [[1, 76, 2], [1, 94, 4], [1, 27, 3], [1, 5, 5], [2, 30, 3], [2, 45, 5], [1, 200, 1]];
+  // for (var j = 0; j < userData.length; j++) {
+  //   db.SwingTable.create({
+  //     userID: userData[j][0],
+  //     songID: userData[j][1],
+  //     rating: userData[j][2]
+  //   });
+  // };
 };
 
 var matchTracks = function(tracks) {
