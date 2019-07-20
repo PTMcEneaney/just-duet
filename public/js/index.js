@@ -52,14 +52,15 @@ var API = {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
-
   var search = {
     query: $exampleText.val().trim(),
     type: $(".dropdown-toggle")
       .text()
       .trim()
   };
+  console.log(search.query, search.type);
 
+  if (search.query) {
   API.getSpotify(search).then(function(req, res) {
     console.log("index.js response: ", req, res);
     // var data = JSON.stringify(req);
@@ -68,8 +69,11 @@ var handleFormSubmit = function(event) {
     // API.updateIndex(data);
   });
 
-  $exampleText.val("");
-  $dropdownSearch.val("");
+    $exampleText.val("");
+    $dropdownSearch.val("");
+  } else {
+    alert("Please type something in the search field");
+  };
 };
 
 var queryReturn = function(data) {
@@ -145,6 +149,8 @@ $("body").on("click", ".song", function() {
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
+// $submitBtn.on("click", $("#submit").attr("disabled"));
+
 $dropdownSearch.on("click", dropdownUpdate);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 $creatorBtn.on("click", API.creators());
