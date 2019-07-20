@@ -37,7 +37,7 @@ var parseTracks = function(type, query, data) {
 
   var users = [["test@test.com", "test123"], ["test2@test.com", "test222"]];
   for (var j = 0; j < userData.length; j++) {
-    db.User.create({
+    db.Users.create({
       email: users[j][0],
       password: users[j][1]
     })
