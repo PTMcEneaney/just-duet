@@ -120,13 +120,15 @@ body, html, #home{
   padding: 8px;
 }
 
-#loginButton, #dropdownSearch, #logout {
+#loginButton, #signupButton, #dropdownSearch, #logout {
   background-color: #ec4a3d;
   border: none;
   border-radius: 0px;
+  color: #f3f7f5;
   /* box-shadow: 4px 4px 0px #9590a9; */
-
 }
+
+
 #submit {
   background-color: #9590a9;
   border: none;
@@ -254,4 +256,27 @@ border-radius: 0;
 }
 #googleLink:hover {
   color: #ec4a3d;
+}
+
+/*****************Signup & Login*********************/
+#signupLink, #loginLink {
+  color: #f3f7f5;
+}
+.loginHead, .signupHead {
+  color: #f3f7f5;
+  font-family: 'Advent Pro', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+}
+#loginBody, #signupBody {
+  border-bottom: 2px solid #f3f7f5;
+  border-right: 2px solid #f3f7f5;
+  box-shadow: 4px 4px 0px #bc3f53;
+
+}
+
+/****************Error Page******************/
+.errorPage {
+    color: #f3f7f5;
+    font-family: 'Advent Pro', sans-serif;
 }

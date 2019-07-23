@@ -1,8 +1,31 @@
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-title" href="/">just duet</a>
+            <div class="d-flex align-items-center">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="float-right">
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ml-4">
+                        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" id="creatorsBtn" href="/creators">Creators</a>
+                        <a class="nav-item nav-link" id="mapsBtn" href="/maps">Local Karaoke</a>
+                        {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
+                        <a class="nav-item nav-link disabled" href="/profile">Profile</a>
+                        {{!-- <button type="button" class="help btn" data-toggle="modal"
+                            data-target="#loginModalScrollable" id="loginButton">Log In</button> --}}
+                        <a class="btn btn-primary" id="loginButton" role="button" href="/login">Log In</a>
+                        <button class="btn d-none" id="logout">Log Out</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </nav>
 <div class="container">
-  <div class="jumbotron mt-4">
-    <h1 class="display-4 text-center">404 Not Found
-      <span role="img" aria-label="Face with rolling eyes">🙄</span>
-    </h1>
-    <a href="/">← Back To Home</a>
-  </div>
+    <h1 class="display-4 text-center errorPage my-3">404: Page Not Found</h1>
+    <h4><a href="/" class="errorPage">Spooky! Click here to take me Home!</a></h4>
+    <img class="w-100" src="https://www.impactbnd.com/hubfs/intelligent-404-pages.jpg" alt="404 Error">
 </div>

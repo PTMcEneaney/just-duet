@@ -14,8 +14,9 @@
 
                     {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
                     <a class="nav-item nav-link disabled" href="/profile">Profile</a>
-                    <button type="button" class="help btn btn-primary" data-toggle="modal"
-                        data-target="#loginModalScrollable" id="loginButton">Log In</button>
+                    {{!-- <button type="button" class="help btn btn-primary" data-toggle="modal"
+                        data-target="#loginModalScrollable" id="loginButton">Log In</button> --}}
+                    <a class="btn btn-primary" id="loginButton" role="button" href="/login">Log In</a>
                     <button class="btn btn-primary d-none" id="logout">Log Out</button>
                 </div>
             </div>
@@ -23,8 +24,9 @@
     </div>
 </nav>
 </div>
-<div class="container">
-    <form class="signup">
+<div class="container my-3" id="signupBody">
+    <form class="signup mx-4">
+        <h2 class="signupHead">sign up</h2>
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="signup-email-input" placeholder="Email">
@@ -40,7 +42,5 @@
         <button type="submit" class="btn btn-secondary">Sign Up</button>
     </form>
     <br />
-    <br />
-    <p>Or log in <a href="#" data-dismiss="modal" id="modalLogin" data-toggle="modal"
-            data-target="#loginModalScrollable">here</a></p>
+    <p class="mx-4" id="loginLink">Or log in <a href="/login">here</a></p>
 </div>
