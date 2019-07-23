@@ -139,9 +139,4 @@ $dropdownSearch.on("click", dropdownUpdate);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 $creatorBtn.on("click", API.creators());
 
-$("#logoutButton").on("click", function() {
-  console.log("logout clicked");
-}
-
-
 
