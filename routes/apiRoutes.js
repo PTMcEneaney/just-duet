@@ -212,7 +212,7 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
     res.json(req.user);
-    console.log("users", req.user);
+    // console.log("user", req.user);
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -231,11 +231,6 @@ module.exports = function(app) {
       });
   });
 
-  // Route for logging user out
-  app.get("/logout", function(req, res) {
-    req.logout();
-    res.redirect("/");
-  });
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
@@ -250,5 +245,17 @@ module.exports = function(app) {
         id: req.user.id
       });
     }
+  });
+
+   // Route for logging user out
+  app.get("/logout", function(req, res) {
+    console.log("logout clicked");
+    req.logout();
+    res.redirect("/");
+    // res.render("index", {
+    //     topRecs: topRecs,
+    //     profile: profileNo,
+    //     userStatus: statusNo
+      // });
   });
 };

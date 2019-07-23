@@ -356,19 +356,18 @@ module.exports = function (app) {
   };
 
   var profileYes = '<a class="nav-item nav-link" href="/profile">Profile</a>';
-  var statusYes = '<a class="btn btn-primary" id="logoutButton" role="button" href="#">Log Out</a>';
+  var statusYes = '<a class="btn btn-primary" id="logoutButton" role="button" href="/logout">Log Out</a>';
   var profileNo = '<a class="nav-item nav-link disabled" href="/profile">Profile</a>';
   var statusNo = '<a class="btn btn-primary" id="loginButton" role="button" href="/login">Log In</a>';
-  var userID = "";
-  var renderPage = function (req, res, locationYes, locationNo, userID) {
+
+  var renderPage = function (req, res, locationYes, locationNo) {
     if (req.user) {
+      profileYes = '<a class="nav-item nav-link" href="/profile/' + req.user.id + '">Profile</a>';
       res.render(locationYes, {
         topRecs: topRecs,
         profile: profileYes,
         userStatus: statusYes
       });
-      // console.log("req.user found", req.user.dataValues.id)
-
     } else {
       res.render(locationNo, {
         topRecs: topRecs,
@@ -377,26 +376,9 @@ module.exports = function (app) {
       });
     };
   }
-  app.get("/", function (req, res) {
 
-    // renderPage(req, res, "index", "index", req.user[0].dataValues.id);
-    if (req.user) {
-      res.render("index", {
-        topRecs: topRecs,
-        profile: profileYes,
-        userStatus: statusYes
-      });
-      console.log("req.user found", req.user.id)
-      profileYes = '<a class="nav-item nav-link" href="/profile/' + req.user.id + '">Profile</a>';
-      return profileYes;
-    } else {
-      res.render("index", {
-        topRecs: topRecs,
-        profile: profileNo,
-        userStatus: statusNo
-      });
-      console.log("req.user not found")
-    };
+  app.get("/", function (req, res) {
+    renderPage(req, res, "index", "index");
   });
 
   app.get("/signup", function (req, res) {
@@ -449,7 +431,7 @@ module.exports = function (app) {
         }
         res.render("profile", {
           profile: '<a class="nav-item nav-link active" href="/profile">Profile</a>',
-          userStatus:  '<a class="btn btn-primary" id="logoutButton" role="button" href="#">Log Out</a>',
+          userStatus:  '<a class="btn btn-primary" id="logoutButton" role="button" href="/logout">Log Out</a>',
           ratings: result,
           dbResults: dbResults,
         });
@@ -551,5 +533,6 @@ module.exports = function (app) {
   app.get("*", function (req, res) {
     renderPage(req, res, "404", "404");
   });
-  // });
+  
+
 };
