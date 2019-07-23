@@ -120,7 +120,7 @@ body, html, #home{
   padding: 8px;
 }
 
-#loginButton, #signupButton, #dropdownSearch, #logout {
+#loginButton, #signupButton, #dropdownSearch, #logoutButton {
   background-color: #ec4a3d;
   border: none;
   border-radius: 0px;

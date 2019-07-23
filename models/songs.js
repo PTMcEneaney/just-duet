@@ -27,8 +27,9 @@ module.exports = function(sequelize, DataTypes) {
     // A Post can't be created without an Author due to the foreign key constraint
     Songs.belongsToMany(models.Users, {
       through: "SwingTable",
-      as: "users",
-      foreignKey: "userId"
+      as: "userId",
+      foreignKey: "users",
+      // otherKey: "songId"
     });
   };
   return Songs;

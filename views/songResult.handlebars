@@ -15,11 +15,8 @@
                         <a class="nav-item nav-link" id="mapsBtn" href="/maps">Local Karaoke</a>
 
                         {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
-                        <a class="nav-item nav-link disabled" href="/profile">Profile</a>
-                        {{!-- <button type="button" class="help btn btn-primary" data-toggle="modal"
-                            data-target="#loginModalScrollable" id="loginButton">Log In</button> --}}
-                        <a class="btn btn-primary" id="loginButton" role="button" href="/login">Log In</a>
-                        <button class="btn btn-primary d-none" id="logout">Log Out</button>
+                        {{{profile}}}
+                        {{{userStatus}}}
                     </div>
                 </div>
             </div>
@@ -96,4 +93,5 @@
 </div>
 
 <script type="text/javascript" src="/js/results.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

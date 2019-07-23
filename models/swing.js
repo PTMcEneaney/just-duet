@@ -2,6 +2,11 @@ module.exports = function(sequelize, DataTypes) {
   var SwingTable = sequelize.define(
     "SwingTable",
     {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,

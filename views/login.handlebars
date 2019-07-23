@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-title" href="/">Karaoke</a>
+        <a class="navbar-title" href="/">just duet</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,11 +13,8 @@
                     <a class="nav-item nav-link" id="mapsBtn" href="/maps">Local Karaoke</a>
 
                     {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
-                    <a class="nav-item nav-link disabled" href="/profile">Profile</a>
-                    {{!-- <button type="button" class="help btn btn-primary" data-toggle="modal"
-                        data-target="#signupModalScrollable" id="signupButton">Sign Up</button> --}}
-                    <a class="btn btn-primary" id="signupButton" role="button" href="/signup">Sign Up</a>
-                    <button class="btn btn-primary d-none" id="logout">Log Out</button>
+                    {{{profile}}}
+                    {{{userStatus}}}
                 </div>
             </div>
         </div>
@@ -39,3 +36,6 @@
     <br />
     <p class="mx-4" id="signupLink">Or sign up <a href="/signup">here</a></p>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>

@@ -11,12 +11,6 @@ var $creatorBtn = $("#creatorsBtn");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
   getSpotify: function(data) {
     var type = data.type;
     var query = data.query;
@@ -25,15 +19,7 @@ var API = {
       type: "GET"
     });
   },
-  // updateIndex: function(data) {
-  //   return $.ajax({
-  //     url: "update",
-  //     type: "POST",
-  //     data: {data}
-  //   });
-  // },
   results: function(songArtist) {
-    console.log("test");
     return $.get({
       url: "/results/" + songArtist,
       type: "GET",
@@ -63,10 +49,8 @@ var handleFormSubmit = function(event) {
   if (search.query) {
   API.getSpotify(search).then(function(req, res) {
     console.log("index.js response: ", req, res);
-    // var data = JSON.stringify(req);
 
     queryReturn(req);
-    // API.updateIndex(data);
   });
 
     $exampleText.val("");
@@ -154,3 +138,6 @@ $submitBtn.on("click", handleFormSubmit);
 $dropdownSearch.on("click", dropdownUpdate);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 $creatorBtn.on("click", API.creators());
+
+
+

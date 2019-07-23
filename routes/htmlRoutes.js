@@ -1,6 +1,10 @@
 var db = require("../models");
 var Sequelize = require("sequelize");
 
+// Requiring our custom middleware for checking if a user is logged in
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
+
 module.exports = function (app) {
   // Load index page
   var topFeminine = [
@@ -351,36 +355,63 @@ module.exports = function (app) {
     };
   };
 
+  var profileYes = '<a class="nav-item nav-link" href="/profile">Profile</a>';
+  var statusYes = '<a class="btn btn-primary" id="logoutButton" role="button" href="#">Log Out</a>';
+  var profileNo = '<a class="nav-item nav-link disabled" href="/profile">Profile</a>';
+  var statusNo = '<a class="btn btn-primary" id="loginButton" role="button" href="/login">Log In</a>';
+  var userID = "";
+  var renderPage = function (req, res, locationYes, locationNo, userID) {
+    if (req.user) {
+      res.render(locationYes, {
+        topRecs: topRecs,
+        profile: profileYes,
+        userStatus: statusYes
+      });
+      // console.log("req.user found", req.user.dataValues.id)
 
+    } else {
+      res.render(locationNo, {
+        topRecs: topRecs,
+        profile: profileNo,
+        userStatus: statusNo
+      });
+    };
+  }
   app.get("/", function (req, res) {
-    res.render("index", {
-      topRecs: topRecs
-    });
+
+    // renderPage(req, res, "index", "index", req.user[0].dataValues.id);
+    if (req.user) {
+      res.render("index", {
+        topRecs: topRecs,
+        profile: profileYes,
+        userStatus: statusYes
+      });
+      console.log("req.user found", req.user.id)
+      profileYes = '<a class="nav-item nav-link" href="/profile/' + req.user.id + '">Profile</a>';
+      return profileYes;
+    } else {
+      res.render("index", {
+        topRecs: topRecs,
+        profile: profileNo,
+        userStatus: statusNo
+      });
+      console.log("req.user not found")
+    };
   });
 
   app.get("/signup", function (req, res) {
-    db.Songs.findAll({}).then(function (data) {
-      res.render("signup", {
-        msg: "Karaoke!!",
-        examples: data
-      });
-    });
+    renderPage(req, res, "index", "signup")
   });
 
   app.get("/login", function (req, res) {
-    db.Songs.findAll({}).then(function (data) {
-      res.render("login", {
-        msg: "Karaoke!!",
-        examples: data
-      });
-    });
+    renderPage(req, res, "index", "login")
   });
 
   app.get("/creators", function (req, res) {
-    res.render("creators");
+    renderPage(req, res, "creators", "creators")
   });
 
-  app.get("/profile/:userID", function (req, res) {
+  app.get("/profile/:userID", isAuthenticated, function (req, res) {
     var Op = Sequelize.Op;
 
     var user = req.params.userID;
@@ -399,7 +430,7 @@ module.exports = function (app) {
       // console.log(result);
 
 
-      var render = function (dbResults) {
+      var renderProf = function (dbResults) {
         for (var i = 0; i < dbResults.length; i++) {
           //converting star ratings to icons
           if (result[i].rating === 1) {
@@ -417,6 +448,8 @@ module.exports = function (app) {
           }
         }
         res.render("profile", {
+          profile: '<a class="nav-item nav-link active" href="/profile">Profile</a>',
+          userStatus:  '<a class="btn btn-primary" id="logoutButton" role="button" href="#">Log Out</a>',
           ratings: result,
           dbResults: dbResults,
         });
@@ -435,14 +468,11 @@ module.exports = function (app) {
         }
         // console.log("data returned: ", results)
         if (dbResults.length >= data.length) {
-          render(dbResults);
+          renderProf(dbResults);
         }
       });
 
     });
-    // if (req.user) {
-    //   res.render("/profile");
-    // }
   });
 
 
@@ -471,7 +501,10 @@ module.exports = function (app) {
       duration = duration.minute + " min " + duration.seconds + " seconds";
       
       // console.log(song, youtube, artist, data.year, data.genre, data.album, data.duet, duration, data.popularity, data.explicit, data.languages, data.youtubeURL);
+      if (req.user) {
       res.render("songResult", {
+        profile: profileYes,
+        userStatus: statusYes,
         song: song,
         youtube: youtube,
         artist: artist,
@@ -485,19 +518,38 @@ module.exports = function (app) {
         languages: data.languages,
         youtubeURL: data.youtubeURL,
         query: youtube
+
       });
+    };
+    res.render("songResult", {
+      profile: profileNo,
+      userStatus: statusNo,
+      song: song,
+      youtube: youtube,
+      artist: artist,
+      year: data.year,
+      genre: data.genre,
+      album: data.album,
+      duet: data.duet,
+      duration: duration,
+      popularity: data.popularity,
+      explicit: data.explicit,
+      languages: data.languages,
+      youtubeURL: data.youtubeURL,
+      query: youtube
+    });
     };
 
     dbQuery(artist, song, render);
   });
 
   app.get("/maps", function (req, res) {
-    res.render("maps");
+    renderPage(req, res, "maps", "maps");
   });
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
-    res.render("404");
+    renderPage(req, res, "404", "404");
   });
   // });
 };

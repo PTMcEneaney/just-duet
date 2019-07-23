@@ -38,11 +38,8 @@
                         <a class="nav-item nav-link" id="creatorsBtn" href="/creators">Creators</a>
                         <a class="nav-item nav-link active" id="mapsBtn" href="/maps">Local Karaoke</a>
                         {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
-                        <a class="nav-item nav-link disabled" href="/profile">Profile</a>
-                        {{!-- <button type="button" class="help btn" data-toggle="modal"
-                            data-target="#loginModalScrollable" id="loginButton">Log In</button> --}}
-                        <a class="btn btn-primary" id="loginButton" role="button" href="/login">Log In</a>
-                        <button class="btn d-none" id="logout">Log Out</button>
+                        {{{profile}}}
+                        {{{userStatus}}}
                     </div>
                 </div>
             </div>
@@ -269,6 +266,8 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMy3-XOng5qQDc8ce3fS2pI_zqUjeHmtw&libraries=places&callback=initMap"
         async defer></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
 </body>
 
 </html>

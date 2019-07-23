@@ -9,15 +9,12 @@
             <div class="float-right">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-4">
-                        <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="/">Home</a>
                         <a class="nav-item nav-link" id="creatorsBtn" href="/creators">Creators</a>
                         <a class="nav-item nav-link" id="mapsBtn" href="/maps">Local Karaoke</a>
                         {{!-- PROFILE BUTTON DISABLED UNTIL LOGGED IN --}}
-                        <a class="nav-item nav-link disabled" href="/profile">Profile</a>
-                        {{!-- <button type="button" class="help btn" data-toggle="modal"
-                            data-target="#loginModalScrollable" id="loginButton">Log In</button> --}}
-                        <a class="btn btn-primary" id="loginButton" role="button" href="/login">Log In</a>
-                        <button class="btn d-none" id="logout">Log Out</button>
+                        {{{profile}}}
+                        {{{userStatus}}}
                     </div>
                 </div>
             </div>
@@ -29,3 +26,5 @@
     <h4><a href="/" class="errorPage">Spooky! Click here to take me Home!</a></h4>
     <img class="w-100" src="https://www.impactbnd.com/hubfs/intelligent-404-pages.jpg" alt="404 Error">
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>

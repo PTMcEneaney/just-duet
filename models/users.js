@@ -2,16 +2,6 @@
 var bcrypt = require("bcryptjs");
 
 module.exports = function(sequelize, DataTypes) {
-  // var Users = sequelize.define(
-  //   "Users",
-  //   {
-  //     email: DataTypes.STRING,
-  //     password: DataTypes.STRING
-  //   },
-  //   {
-  //     timestamps: false
-  //   }
-  // );
   var Users = sequelize.define("Users", {
     // The email cannot be null, and must be a proper email before creation
     email: {
@@ -41,8 +31,9 @@ module.exports = function(sequelize, DataTypes) {
   Users.associate = function(models) {
     Users.belongsToMany(models.Songs, {
       through: "SwingTable",
-      as: "songs",
-      foreignKey: "songId"
+      as: "songId",
+      foreignKey: "songs",
+      // otherKey: "users"
     });
   };
   return Users;
