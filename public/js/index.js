@@ -31,6 +31,18 @@ var API = {
       url: "/creators",
       type: "GET"
     });
+  },
+  addFavorite: function(songArtist) {
+    return $.ajax({
+      url: "/addFavorite/" + songArtist,
+      type: "GET"
+    })
+  },
+  deleteFavorite: function(songArtist) {
+    return $.ajax({
+      url: "/deleteFavorite/" + songArtist,
+      type: "post"
+    })
   }
 };
 
@@ -99,20 +111,7 @@ var handleDeleteBtnClick = function() {
   });
 };
 
-$("body").on("click", ".heartBtn", function() {
-  if ($(this).html() === '<i class="fas fa-heart"></i>') {
-    $(this).html('<i class="far fa-heart"></i>');
-  } else {
-    $(this).html('<i class="fas fa-heart"></i>');
-  }
-  console.log($(this).attr("value"));
-});
-
-$("body").on("click", ".song", function() {
-  console.log($(this).attr("value"));
-  console.log("\n\n\n\nTEST");
-  var value = $(this).attr("value");
-
+var parseChoice = function(value, cb) {
   var songArtist = value.split("–");
   var song = songArtist[0]
     .trim()
@@ -124,11 +123,36 @@ $("body").on("click", ".song", function() {
     .join("+");
 
   songArtist = song + "-" + artist;
-  console.log(songArtist);
+  cb(songArtist);
+}
 
-  //window.location.href = "https://rocky-reef-42287.herokuapp.com/results/" + songArtist;
-  window.location.href = "https://damp-reaches-93608.herokuapp.com/results/" + songArtist;
-  //API.results(songArtist);
+$("body").on("click", ".heartBtn", function() {
+  var value = $(this).attr("value");
+
+  if ($(this).html() === '<i class="fas fa-heart"></i>') {
+    $(this).html('<i class="far fa-heart"></i>');
+    $(this).attr("favorite", false);
+    // deleteFavorite($(this).attr("value"));
+    parseChoice(value, API.deleteFavorite);
+  } else {
+    $(this).html('<i class="fas fa-heart"></i>');
+    $(this).attr("favorite", true)
+    // addFavorite($(this).attr("value"));
+    parseChoice(value, API.addFavorite);
+
+  }
+});
+
+$("body").on("click", ".song", function() {
+  console.log($(this).attr("value"));
+  console.log("\n\n\n\nTEST");
+  var value = $(this).attr("value");
+  
+  var redirect = function(songArtist) {
+    window.location.href = "/results/" + songArtist;
+    console.log(songArtist);
+  }
+  parseChoice(value, redirect);
 });
 
 // Add event listeners to the submit and delete buttons

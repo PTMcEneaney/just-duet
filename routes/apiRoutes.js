@@ -160,6 +160,72 @@ var getSongData = function(data, cb) {
   });
 };
 
+var matchSongArtist = function(songArtist, userId, cb) {
+  var userId = userId;
+   var text = songArtist.split("-");
+    var song = text[0]
+      .trim()
+      .split("+")
+      .join(" ");
+
+    var artist = text[1]
+      .trim()
+      .split("+")
+      .join(" "); 
+    console.log("querying DB for ", artist, song);
+    db.Songs.findAll({
+    where: {
+      artist: artist,
+      title: song
+    }
+  }).then(function(data) {
+    //if there is a matching record, update db with spotify info
+    if (data[0] !== undefined) {
+      // console.log("record found! ", data[0])
+      var songId = data[0].dataValues.id;
+      // matchSwing(userId, songId);
+      cb(userId, songId);
+    } else {
+      console.log("no record found in match-song-artist")
+    };
+  });
+};
+
+var matchSwing = function(userId, songId) {
+  console.log("Match Swing Entry: ", userId, songId);
+  db.SwingTable.findOne({
+    userId: userId,
+    songId: songId
+  }).then(function(data) {
+    if (data[0] !== undefined) {
+      // updateSwing();
+      console.log("record found in MatchSwing", data);
+      // deleteSwing(userId, songId)
+    } else {
+      // console.log("no record found in matchSwing", data);
+      createSwing(userId, songId);
+    }
+  });
+};
+
+var createSwing = function(userId, songId) {
+    db.SwingTable.create({
+      userId: userId,
+      songId: songId
+    }).then(function(data) {
+      console.log("record created in createSwing", data)
+    });
+};
+
+var deleteSwing = function(userId, songId) {
+  db.SwingTable.destroy({
+      userId: userId,
+      songId: songId
+    }).then(function(data) {
+      console.log("record created in createSwing", data)
+    });
+}
+
 module.exports = function(app) {
   // Get all songs in the db
   app.get("/api/songs", function(req, res) {
@@ -231,7 +297,6 @@ module.exports = function(app) {
       });
   });
 
-
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
     if (!req.user) {
@@ -252,10 +317,32 @@ module.exports = function(app) {
     console.log("logout clicked");
     req.logout();
     res.redirect("/");
-    // res.render("index", {
-    //     topRecs: topRecs,
-    //     profile: profileNo,
-    //     userStatus: statusNo
-      // });
+  });
+
+  /***************add/delete favorites**************** */
+  app.get("/addFavorite/:songArtist", function(req, res) {
+    if (req.user) {
+        var songId = matchSongArtist(req.params.songArtist, req.user.id, matchSwing);
+        // console.log("add", req.params.songArtist, "user", req.user.id, "song", songId)
+    } else {
+
+        res.redirect("/login");
+        console.log("please login to favorite a song")
+        // var result = parseSongArtist(req.params.songArtist);
+        // console.log("not logged in, can't add: ", result)
+    }
+  });
+
+  app.post("/deleteFavorite/:songArtist", function(req, res) {
+    console.log("delete", req.params.songArtist)
+    // matchSongArtist(req.params.songArtist, "user", req.user);
+    if (req.user) {
+        var songId = matchSongArtist(req.params.songArtist, req.user.id, matchSwing);
+        // console.log("delete", req.params.songArtist, "user", req.user.id, "song", songId)
+    } else {
+        res.redirect("/login");
+        console.log("please login to favorite a song")
+    };
+
   });
 };

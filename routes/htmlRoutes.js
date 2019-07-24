@@ -9,7 +9,7 @@ module.exports = function (app) {
   // Load index page
   var topFeminine = [
     { full: "Shake It Off – Taylor Swift" },
-    { full: "Stronger – Kelly Clarkson" },
+    { full: "Stronger (What Doesn't Kill You) – Kelly Clarkson" },
     { full: "I Will Survive – Gloria Gaynor" },
     { full: "It’s Raining Men – The Weather Girls" },
     { full: "Single Ladies – Beyoncé" },
